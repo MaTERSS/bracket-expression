@@ -16,11 +16,13 @@ namespace SCharplight
         {
             Random random = new Random();
             int length = 10; 
+            char leftBracket = '(';
+            char rightBracket = ')';
             char[] chars = new char[length];
 
             for (int i = 0; i < length; i++)
             {
-                chars[i] = random.Next(2) == 0 ? '(' : ')'; 
+                chars[i] = random.Next(2) == 0 ? leftBracket : rightBracket; 
             }
 
             string expression = new string(chars);
@@ -29,21 +31,22 @@ namespace SCharplight
             int currentDepth = 0;
             int maxDepth = 0; 
 
-            foreach (char c in expression)
+            foreach (char bracket in expression)
             {
-                if (c == '(') 
+                if (bracket == '(') 
                 {
                     currentDepth++; 
+
                     if (currentDepth > maxDepth) 
                     {
                         maxDepth = currentDepth; 
                     }
                 }
-
-                else if (c == ')') 
+                else if (bracket == ')') 
                 {
                     currentDepth--; 
                     if (currentDepth < 0) 
+
                     {
                         Console.WriteLine($"Строка '{expression}' некорректна, максимальная глубина: {maxDepth}");
                         return;
