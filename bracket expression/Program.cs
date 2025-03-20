@@ -30,10 +30,10 @@ namespace SCharplight
 
             int currentDepth = 0;
             int maxDepth = 0; 
-
+                
             foreach (char bracket in expression)
             {
-                if (bracket == '(') 
+                if (bracket == leftBracket) 
                 {
                     currentDepth++; 
 
@@ -42,9 +42,10 @@ namespace SCharplight
                         maxDepth = currentDepth; 
                     }
                 }
-                else if (bracket == ')') 
+                else if (bracket == rightBracket) 
                 {
                     currentDepth--; 
+
                     if (currentDepth < 0) 
 
                     {
